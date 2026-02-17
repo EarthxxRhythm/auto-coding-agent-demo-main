@@ -29,7 +29,7 @@
         "创建 Storage bucket: project-media",
         "编写 SQL migration 文件到 supabase/migrations/"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 3,

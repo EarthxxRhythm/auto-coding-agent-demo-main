@@ -1,5 +1,36 @@
 # Progress Log
 
+## 2026-02-17 - Task: Supabase 数据库 Schema
+
+### What was done:
+- supabase/migrations/001_initial_schema.sql 已存在，包含完整的数据库 schema：
+  - 创建 ENUM 类型：project_stage, image_status, video_status
+  - 创建 projects 表：id, user_id, title, story, style, stage, created_at, updated_at
+  - stage 字段为 ENUM：draft, scenes, images, videos, completed
+  - 创建 scenes 表：包含确认状态字段
+    - id, project_id, order_index, description, description_confirmed, image_status, image_confirmed, video_status, video_confirmed, created_at
+  - 创建 images 表：id, scene_id, storage_path, url, width, height, version, created_at
+  - 创建 videos 表：id, scene_id, storage_path, url, duration, task_id, version, created_at
+- 设置外键关系（级联删除）
+- 创建索引：user_id, project_id, scene_id, order_index, status 字段
+- 创建 Storage bucket：project-media（私有，按用户 ID 隔离）
+- Row Level Security (RLS) 策略：用户只能访问自己的数据
+- 触发器：自动更新 projects.updated_at
+- 完整的表和列注释
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ SQL migration 文件完整，包含所有要求的表、字段、索引、外键和 RLS 策略
+
+### Notes:
+- Migration 文件位于 supabase/migrations/001_initial_schema.sql
+- Storage bucket 使用用户 ID 作为文件夹根目录进行隔离
+- 版本号 (version) 用于追踪图片/视频的重新生成
+- 级联删除确保删除项目时自动清理关联的分镜、图片和视频
+
+---
+
 ## 2026-02-17 - Task: 项目基础配置
 
 ### What was done:
