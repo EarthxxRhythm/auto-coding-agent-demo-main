@@ -53,3 +53,34 @@ export interface Scene {
 export interface StoryToScenesResponse {
   scenes: Scene[]
 }
+
+// Volcengine (火山引擎) types
+export interface VolcImageRequest {
+  req_key: string
+  prompt: string
+  image_prompt?: string
+  seed?: number
+  scale?: number
+  width?: number
+  height?: number
+  return_url?: boolean
+  use_rpm?: boolean
+}
+
+export interface VolcImageResponse {
+  status_code: number
+  request_id: string
+  data: {
+    image_base64?: string
+    image_url?: string
+  }
+}
+
+export interface VolcErrorResponse {
+  status_code: number
+  request_id: string
+  error: {
+    code: number
+    message: string
+  }
+}

@@ -1,5 +1,31 @@
 # Progress Log
 
+## 2026-02-18 - Task: 火山引擎图片生成 API 封装 - Completed
+
+### What was done:
+- 更新 types/ai.ts 添加火山引擎图片生成类型
+  - VolcImageRequest, VolcImageResponse
+  - VolcErrorResponse
+- 创建 lib/ai/volc-image.ts 图片生成客户端
+  - 实现 generateImage() 函数调用 Seedream API
+  - 实现 fetchWithRetry() 重试逻辑（最多3次重试）
+  - 实现 downloadImageAsBase64() 下载图片并转换为 base64
+  - 实现 generateImages() 批量生成图片
+  - 支持自定义尺寸、seed 等参数
+  - 默认尺寸：1024x768
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有功能代码实现完成
+
+### Notes:
+- 使用 volc_seedream_v2.0 模型
+- VOLC_API_KEY 需要在 .env.local 中配置
+- 支持同步生成（return_urltexttrue）和异步任务
+
+---
+
 ## 2026-02-18 - Task: 智谱AI API 封装 - Completed
 
 ### What was done:
