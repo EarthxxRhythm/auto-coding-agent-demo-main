@@ -1,5 +1,26 @@
 # Progress Log
 
+## 2026-02-18 - Task: 认证保护中间件 - Completed
+
+### What was done:
+- 验证 middleware.ts 中已实现的认证保护功能
+  - 保护 /projects 和 /create 路由（未登录用户无法访问）
+  - 未登录用户访问受保护页面时重定向到 /login
+  - 已登录用户访问 /login 和 /register 时重定向到首页
+  - 集成 Supabase session 更新逻辑
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 中间件认证保护逻辑已正确实现
+
+### Notes:
+- 该功能在 Task 3 (Supabase 客户端封装) 中已完成
+- 使用 getUser() 检查用户认证状态
+- matcher 配置正确排除静态资源
+
+---
+
 ## 2026-02-18 - Task: 用户认证 - 登出功能 - Completed
 
 ### What was done:

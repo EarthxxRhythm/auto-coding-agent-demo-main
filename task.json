@@ -89,7 +89,7 @@
         "未登录用户访问受保护页面时重定向到 /login",
         "已登录用户访问 /login 和 /register 时重定向到首页"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 8,
