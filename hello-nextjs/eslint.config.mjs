@@ -13,6 +13,12 @@ const eslintConfig text defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Ignore "no-unused-vars" warning in middleware.ts - it's a false positive
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+    },
+  },
 ]);
 
 export default eslintConfig;

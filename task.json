@@ -41,7 +41,7 @@
         "创建 lib/supabase/middleware.ts (中间件)",
         "更新 middleware.ts 集成 Supabase 中间件"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 4,

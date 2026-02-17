@@ -1,5 +1,41 @@
 # Progress Log
 
+## 2026-02-17 - Task: Supabase 客户端封装
+
+### What was done:
+- 创建 lib/supabase/server.ts - 服务端 Supabase 客户端
+  - 使用 @supabase/ssr 的 createServerClient
+  - 集成 next/headers 的 cookies API
+  - 实现 get/set/remove cookie 操作
+  - 使用 async/await 处理 Next.js 16 的 cookies() Promise
+- 创建 lib/supabase/client.ts - 浏览器端 Supabase 客户端
+  - 使用 'use client' 指令
+  - 使用 createBrowserClient
+- 创建 lib/supabase/middleware.ts - Supabase 中间件工具
+  - 实现 updateSession() 函数用于更新 session cookies
+  - 处理 cookie 的同步
+- 创建 middleware.ts - 主中间件文件
+  - 集成 Supabase updateSession
+  - 实现路由保护逻辑
+  - 未登录用户访问 /projects 和 /create 重定向到 /login
+  - 已登录用户访问 /login 和 /register 重定向到首页
+  - 配置 matcher 规则，排除静态资源
+- 更新 eslint.config.mjs，配置 varsIgnorePattern 为 /^_/u 以允许使用 _ 前缀的未使用变量
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有 Supabase 客户端文件创建完成
+- ✅ 中间件路由保护逻辑实现
+
+### Notes:
+- Next.js 16 中 cookies() 返回 Promise，需要 await
+- ESLint 的 no-unused-vars 规则在某些场景下会误报，使用 _ 前缀避免警告
+- middleware.ts 使用 Next.js 16 的 proxy 功能（已弃用的 middleware 文件名）
+- 路由保护确保未登录用户无法访问受保护页面
+
+---
+
 ## 2026-02-17 - Task: Supabase 数据库 Schema
 
 ### What was done:
