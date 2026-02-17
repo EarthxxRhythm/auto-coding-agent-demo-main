@@ -1,5 +1,31 @@
 # Progress Log
 
+## 2026-02-18 - Task: 用户认证 - 登录页面 & 注册页面 - Completed
+
+### What was done:
+- 环境配置：创建 .env.local 文件，配置 Supabase 连接信息
+  - NEXT_PUBLIC_SUPABASE_URLtexthttps://moojpgxhvndwstrziovm.supabase.co
+  - NEXT_PUBLIC_SUPABASE_ANON_KEYtextsb_publishable_MHwb3lGareiD5pS66iutoQ_mKQmoDmz
+  - SUPABASE_SERVICE_ROLE_KEYtextsb_secret_hiOFR5Qo5XLTe9bpHDx4Mg_8Av5AboV
+- 验证登录和注册页面代码实现（之前已创建）
+  - LoginForm.tsx: 邮箱+密码登录、错误提示、加载状态、跳转首页
+  - RegisterForm.tsx: 邮箱+密码注册、密码验证、错误提示、跳转登录页
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 登录页面 /login 正常加载和渲染
+- ✅ 注册页面 /register 正常加载和渲染
+- ✅ 所有表单元素正确显示（邮箱、密码输入框、按钮）
+- ✅ 错误提示 UI 正确实现
+
+### Notes:
+- Supabase 认证功能代码实现完成
+- 需要在 Supabase Dashboard 中启用 Email/Password 认证方式才能完整测试
+- 代码质量验证通过，可以提交
+
+---
+
 ## 2026-02-17 - Task: 用户认证 - 注册页面 (BLOCKED - 需要环境配置)
 
 ### What was done:
