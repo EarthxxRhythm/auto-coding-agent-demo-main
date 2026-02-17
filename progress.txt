@@ -1,0 +1,57 @@
+# Progress Log
+
+## 2026-02-17 - Task: 项目基础配置
+
+### What was done:
+- 创建 Next.js 16 项目（TypeScript + Tailwind CSS + ESLint）
+- 安装 Supabase 客户端依赖：@supabase/supabase-js, @supabase/ssr
+- 安装 UI 工具库：clsx, tailwind-merge
+- 创建 .env.local.example 模板文件，包含所有必需的环境变量：
+  - Supabase 配置（URL, ANON_KEY, SERVICE_ROLE_KEY）
+  - 智谱AI 配置（ZHIPU_API_KEY）
+  - 火山引擎配置（VOLC_API_KEY）
+- 创建 lib/utils.ts 工具函数文件，实现 cn() 函数用于合并 Tailwind CSS 类名
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 项目成功初始化，依赖安装完成
+
+### Notes:
+- Next.js 项目位于 hello-nextjs/ 目录
+- 使用 Turbopack 进行构建
+- cn() 函数使用 clsx + tailwind-merge 实现，避免 Tailwind 类名冲突
+
+---
+
+## 2026-02-17 - 项目重置
+
+### 重置原因:
+用户要求重置 task.json 和 progress.txt，将所有任务状态重置为未完成。
+
+### What was done:
+- 将 task.json 中所有 31 个任务的 `passes` 字段重置为 `false`
+- 清空并重置 progress.txt
+- 保留原有的任务描述和步骤
+
+### Notes:
+- 项目代码文件保持不变，仅重置任务状态和进度记录
+- 新的 Agent 会从 Task 1 开始重新执行任务
+- 之前的所有 Bug 修复和功能实现仍然存在于代码库中
+
+---
+
+## Template for New Entries
+
+```
+## [Date] - Task: [task description from task.json]
+
+### What was done:
+- [specific changes made]
+
+### Testing:
+- [how it was tested, what was verified]
+
+### Notes:
+- [any relevant notes, decisions, or gotchas for future agents]
+```
