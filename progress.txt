@@ -1,5 +1,33 @@
 # Progress Log
 
+## 2026-02-18 - Task: 智谱AI API 封装 - Completed
+
+### What was done:
+- 创建 types/ai.ts 定义类型
+  - ZhipuMessage, ZhipuChatRequest, ZhipuChatResponse
+  - Scene, StoryToScenesResponse
+  - ZhipuErrorResponse
+- 创建 lib/ai/zhipu.ts 智谱AI客户端
+  - 实现 chatCompletion() 函数调用 chat completions API
+  - 实现 fetchWithRetry() 重试逻辑（最多3次重试，指数退避）
+  - 实现 storyToScenes() 函数将故事转换为分镜场景
+  - 编写 STORY_TO_SCENES_SYSTEM_PROMPT prompt 模板
+  - 实现 chat() 通用对话函数
+  - 使用 glm-4-flash 作为默认模型
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有功能代码实现完成
+
+### Notes:
+- 使用 Bearer token 认证（智谱AI API 标准）
+- ZHIPU_API_KEY 需要在 .env.local 中配置
+- 错误处理包括：API 错误、网络错误、JSON 解析错误
+- Prompt 模板包含详细的分镜生成要求
+
+---
+
 ## 2026-02-18 - Task: 认证保护中间件 - Completed
 
 ### What was done:
