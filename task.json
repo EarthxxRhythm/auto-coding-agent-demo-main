@@ -78,7 +78,7 @@
         "实现登出逻辑",
         "登出后跳转到登录页"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 7,

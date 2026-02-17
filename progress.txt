@@ -1,5 +1,27 @@
 # Progress Log
 
+## 2026-02-18 - Task: 用户认证 - 登出功能 - Completed
+
+### What was done:
+- 创建 components/auth/LogoutButton.tsx 登出按钮组件
+  - 使用 'use client' 指令
+  - 集成 Supabase 客户端的 signOut
+  - 实现登出逻辑和错误处理
+  - 登出后跳转到 /login 页面
+  - 添加加载状态和禁用按钮
+  - 支持自定义 className（便于集成到不同 UI 场景）
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 代码实现完成
+
+### Notes:
+- LogoutButton 可用于导航栏或其他需要登出功能的地方
+- 使用 console.error 记录登出错误，不影响用户体验
+
+---
+
 ## 2026-02-18 - Task: 用户认证 - 登录页面 & 注册页面 - Completed
 
 ### What was done:
