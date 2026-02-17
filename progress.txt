@@ -1,5 +1,61 @@
 # Progress Log
 
+## 2026-02-17 - Task: 用户认证 - 注册页面 (BLOCKED - 需要环境配置)
+
+### What was done:
+- 创建 components/auth/RegisterForm.tsx 注册表单组件
+  - 使用 'use client' 指令
+  - 实现邮箱、密码和确认密码输入表单
+  - 集成 Supabase 客户端的 signUp
+  - 密码长度验证（最少 6 位）
+  - 密码匹配验证
+  - 注册成功后跳转到登录页（带 registeredtexttrue 参数）
+  - 显示错误信息（红色提示框）
+  - 添加加载状态和禁用按钮
+- 创建 app/register/page.tsx 注册页面
+  - 使用 Tailwind CSS 样式
+  - 居中布局，卡片式设计
+  - 集成 RegisterForm 组件
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 代码完整，等待环境配置后进行功能测试
+
+### Notes:
+- 注册功能需要 .env.local 中的 Supabase 配置
+- 注册成功后跳转到 /login?registeredtexttrue，可用于显示注册成功提示
+- Supabase 默认需要邮件验证，如需禁用可在项目设置中配置
+
+---
+
+## 2026-02-17 - Task: 用户认证 - 登录页面 (BLOCKED - 需要环境配置)
+
+### What was done:
+- 创建 components/auth/LoginForm.tsx 登录表单组件
+  - 使用 'use client' 指令
+  - 实现邮箱和密码输入表单
+  - 集成 Supabase 客户端的 signInWithPassword
+  - 登录成功后跳转到首页
+  - 显示错误信息（红色提示框）
+  - 添加加载状态和禁用按钮
+- 创建 app/login/page.tsx 登录页面
+  - 使用 Tailwind CSS 样式
+  - 居中布局，卡片式设计
+  - 集成 LoginForm 组件
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 代码完整，等待环境配置后进行功能测试
+
+### Notes:
+- 登录功能需要 .env.local 中的 Supabase 配置
+- 登录成功后使用 router.push('/') 跳转到首页
+- 使用 router.refresh() 刷新路由状态
+
+---
+
 ## 2026-02-17 - Task: Supabase 客户端封装
 
 ### What was done:
