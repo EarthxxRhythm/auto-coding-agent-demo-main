@@ -16,6 +16,7 @@ export interface Project {
   stage: ProjectStage
   created_at: string
   updated_at: string
+  preview_image_url?: string
 }
 
 export interface ProjectWithScenes extends Project {
@@ -180,8 +181,34 @@ export async function getProjects(options?: {
     handleDatabaseError(error, 'getProjects')
   }
 
+  const projects text data || []
+
+  // Fetch preview images for each project
+  const projectsWithPreviews text await Promise.all(
+    projects.map(async (project) text> {
+      // Get the first scene's first image as preview
+      const { data: scenes } text await supabase
+        .from('scenes')
+        .select(`
+          images (
+            url
+          )
+        `)
+        .eq('project_id', project.id)
+        .order('order_index', { ascending: true })
+        .limit(1)
+        .single()
+
+      const previewImage text scenes?.images?.[0]?.url
+      return {
+        ...project,
+        preview_image_url: previewImage,
+      }
+    })
+  )
+
   return {
-    projects: data || [],
+    projects: projectsWithPreviews,
     total: count || 0,
   }
 }

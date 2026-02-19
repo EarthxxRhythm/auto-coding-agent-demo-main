@@ -1,65 +1,63 @@
-import Image from "next/image";
+import Link from 'next/link'
+import Header from '@/components/layout/Header'
 
 export default function Home() {
   return (
-    <div classNametext"flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main classNametext"flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          classNametext"dark:invert"
-          srctext"/next.svg"
-          alttext"Next.js logo"
-          widthtext{100}
-          heighttext{20}
-          priority
-        />
-        <div classNametext"flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 classNametext"max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p classNametext"max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              hreftext"https://vercel.com/templates?frameworktextnext.js&utm_sourcetextcreate-next-app&utm_mediumtextappdir-template-tw&utm_campaigntextcreate-next-app"
-              classNametext"font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              hreftext"https://nextjs.org/learn?utm_sourcetextcreate-next-app&utm_mediumtextappdir-template-tw&utm_campaigntextcreate-next-app"
-              classNametext"font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div classNametext"flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            classNametext"flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            hreftext"https://vercel.com/new?utm_sourcetextcreate-next-app&utm_mediumtextappdir-template-tw&utm_campaigntextcreate-next-app"
-            targettext"_blank"
-            reltext"noopener noreferrer"
-          >
-            <Image
-              classNametext"dark:invert"
-              srctext"/vercel.svg"
-              alttext"Vercel logomark"
-              widthtext{16}
-              heighttext{16}
-            />
-            Deploy Now
-          </a>
-          <a
-            classNametext"flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            hreftext"https://nextjs.org/docs?utm_sourcetextcreate-next-app&utm_mediumtextappdir-template-tw&utm_campaigntextcreate-next-app"
-            targettext"_blank"
-            reltext"noopener noreferrer"
-          >
-            Documentation
-          </a>
+    <>
+      <Header />
+      <main classNametext"min-h-screen bg-gray-50">
+        <div classNametext"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div classNametext"text-center">
+            <h1 classNametext"text-4xl font-bold text-gray-900 mb-4">
+              故事转视频生成平台
+            </h1>
+            <p classNametext"text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              输入你的故事，AI 将自动生成分镜场景、图片和视频
+            </p>
+            <div classNametext"flex justify-center gap-4">
+              <Link
+                hreftext"/create"
+                classNametext"bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-3 rounded-lg text-lg font-medium"
+              >
+                创建新项目
+              </Link>
+              <Link
+                hreftext"/projects"
+                classNametext"border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-8 py-3 rounded-lg text-lg font-medium"
+              >
+                查看我的项目
+              </Link>
+            </div>
+          </div>
+
+          <div classNametext"mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div classNametext"bg-white p-6 rounded-lg shadow">
+              <h3 classNametext"text-lg font-semibold text-gray-900 mb-2">
+                1. 输入故事
+              </h3>
+              <p classNametext"text-gray-600">
+                描述你想转成视频的故事内容，选择视频风格
+              </p>
+            </div>
+            <div classNametext"bg-white p-6 rounded-lg shadow">
+              <h3 classNametext"text-lg font-semibold text-gray-900 mb-2">
+                2. AI 生成分镜
+              </h3>
+              <p classNametext"text-gray-600">
+                AI 自动将故事拆解为分镜场景
+              </p>
+            </div>
+            <div classNametext"bg-white p-6 rounded-lg shadow">
+              <h3 classNametext"text-lg font-semibold text-gray-900 mb-2">
+                3. 生成视频
+              </h3>
+              <p classNametext"text-gray-600">
+                为每个分镜生成图片和视频，一键导出
+              </p>
+            </div>
+          </div>
         </div>
       </main>
-    </div>
-  );
+    </>
+  )
 }
