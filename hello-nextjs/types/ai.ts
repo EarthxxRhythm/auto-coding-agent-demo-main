@@ -84,3 +84,44 @@ export interface VolcErrorResponse {
     message: string
   }
 }
+
+// Volcengine Video types
+export interface VolcVideoTaskRequest {
+  req_key: string
+  prompt: string
+  image_url?: string
+  image_base64?: string
+  video_length?: number
+}
+
+export interface VolcVideoTaskResponse {
+  status_code: number
+  request_id: string
+  data: {
+    task_id: string
+    status: string
+  }
+}
+
+export interface VolcVideoStatusRequest {
+  req_key: string
+  task_id: string
+}
+
+export interface VolcVideoStatusResponse {
+  status_code: number
+  request_id: string
+  data: {
+    task_id: string
+    status: string
+    video_url?: string
+    video_base64?: string
+  }
+}
+
+export interface VideoTaskStatus {
+  task_id: string
+  status: 'processing' | 'completed' | 'failed'
+  video_url?: string
+  video_base64?: string
+}

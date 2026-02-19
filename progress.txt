@@ -1,5 +1,32 @@
 # Progress Log
 
+## 2026-02-19 - Task: 火山引擎视频生成 API 封装 - Completed
+
+### What was done:
+- 验证 lib/ai/volc-video.ts 视频生成客户端已完整实现
+  - createVideoTask(): 创建视频生成任务（支持图片URL输入）
+  - getVideoTaskStatus(): 查询视频任务状态
+  - pollVideoTaskStatus(): 轮询视频任务状态直到完成（支持进度回调）
+  - downloadVideo(): 下载视频并转换为 ArrayBuffer
+  - generateVideo(): 创建视频任务并等待完成（便捷函数）
+  - fetchWithRetry(): 实现错误处理和重试逻辑（最多3次重试，指数退避）
+  - sleep(): 工具函数用于延迟
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有功能代码实现完成
+
+### Notes:
+- 使用 volc_seedance_v1.0 模型
+- VOLC_API_KEY 需要在 .env.local 中配置
+- 轮询间隔：5秒（POLL_INTERVAL），超时时间：5分钟（MAX_POLL_TIME）
+- 支持进度回调函数 onProgress，实时返回任务状态
+
+---
+
+# Progress Log
+
 ## 2026-02-18 - Task: 火山引擎图片生成 API 封装 - Completed
 
 ### What was done:
