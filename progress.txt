@@ -1,5 +1,103 @@
 # Progress Log
 
+## 2026-02-19 - Tasks 12-18: 数据访问层和 API 实现 - Completed
+
+### What was done:
+
+**Task 12: 分镜数据访问层**
+- 创建 lib/db/scenes.ts 分镜数据访问层
+  - createScenes(): 批量创建分镜
+  - getScenesByProjectId(): 获取项目的分镜列表（含媒体）
+  - getSceneById(): 获取单个分镜
+  - updateSceneDescription(): 更新分镜描述
+  - confirmSceneDescription(): 确认分镜描述
+  - confirmAllDescriptions(): 确认所有分镜描述
+  - confirmSceneImage(): 确认分镜图片
+  - confirmAllImages(): 确认所有分镜图片
+  - confirmSceneVideo(): 确认分镜视频
+  - confirmAllVideos(): 确认所有分镜视频
+  - updateSceneStatus(): 更新分镜状态
+  - deleteScenesByProjectId(): 删除项目的所有分镜
+
+**Task 13: 媒体数据访问层**
+- 创建 lib/db/media.ts 媒体数据访问层
+  - uploadToStorage(): 上传文件到 Supabase Storage
+  - deleteFromStorage(): 删除 Storage 文件
+  - deleteFilesByPrefix(): 删除指定前缀的所有文件
+  - createImage(): 保存图片记录（version 自动+1）
+  - getImagesBySceneId(): 获取分镜的所有图片
+  - getLatestImageBySceneId(): 获取最新图片
+  - deleteImagesBySceneId(): 删除分镜的所有图片
+  - createVideo(): 保存视频记录（version 自动+1）
+  - getVideosBySceneId(): 获取分镜的所有视频
+  - getLatestVideoBySceneId(): 获取最新视频
+  - getVideoByTaskId(): 通过 task_id 获取视频
+  - deleteVideosBySceneId(): 删除分镜的所有视频
+
+**Task 14: 项目 API - CRUD**
+- 创建 app/api/projects/route.ts
+  - GET /api/projects: 获取用户项目列表（支持分页和阶段筛选）
+  - POST /api/projects: 创建新项目
+- 创建 app/api/projects/[id]/route.ts
+  - GET /api/projects/:id: 获取项目详情
+  - PATCH /api/projects/:id: 更新项目
+  - DELETE /api/projects/:id: 删除项目
+- 所有 API 都验证用户身份和项目所有权
+
+**Task 15: 生成 API - 分镜描述生成**
+- 创建 app/api/generate/scenes/route.ts
+  - POST /api/generate/scenes: 生成分镜描述
+  - 调用智谱AI GLM 拆解故事
+  - 删除旧分镜，保存新分镜
+  - 更新项目 stage 为 'scenes'
+- 创建 app/api/generate/scenes/regenerate/route.ts
+  - POST /api/generate/scenes/regenerate: 重新生成分镜
+
+**Task 16: 生成 API - 图片生成**
+- 创建 app/api/generate/image/[sceneId]/route.ts
+  - POST /api/generate/image/:sceneId: 为单个分镜生成图片
+  - 调用火山引擎图片生成 API
+  - 上传图片到 Supabase Storage
+  - 更新分镜 image_status
+- 创建 app/api/generate/images/route.ts
+  - POST /api/generate/images: 批量生成所有分镜图片
+  - 更新项目 stage 为 'images'
+
+**Task 17: 生成 API - 视频生成**
+- 创建 app/api/generate/create-video/[sceneId]/route.ts
+  - POST /api/generate/create-video/:sceneId: 创建视频任务
+  - 调用火山引擎视频生成 API
+  - 保存 task_id 到数据库
+  - 更新分镜 video_status 为 'processing'
+- 创建 app/api/generate/video-task/[taskId]/route.ts
+  - GET /api/generate/video-task/:taskId: 查询视频任务状态
+  - 任务完成后下载并上传视频
+  - 更新分镜 video_status
+- 创建 app/api/generate/videos/route.ts
+  - POST /api/generate/videos: 批量创建视频任务
+  - 更新项目 stage 为 'videos'
+
+**Task 18: 确认 API - 分镜和媒体确认**
+- 创建 app/api/scenes/[id]/confirm-description/route.ts: 确认单个分镜描述
+- 创建 app/api/scenes/confirm-all-descriptions/route.ts: 确认所有分镜描述
+- 创建 app/api/scenes/[id]/confirm-image/route.ts: 确认单个分镜图片
+- 创建 app/api/scenes/confirm-all-images/route.ts: 确认所有分镜图片
+- 创建 app/api/scenes/[id]/confirm-video/route.ts: 确认单个分镜视频
+- 创建 app/api/scenes/confirm-all-videos/route.ts: 确认所有分镜视频，更新项目 stage 为 'completed'
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有 API 路由实现完成
+
+### Notes:
+- 所有 API 都使用用户身份验证
+- 视频生成 API 路由重构为 /api/generate/create-video 和 /api/generate/video-task 避免路由冲突
+- 图片和视频生成使用 Storage 上传，记录 version 用于追踪重新生成
+- 错误处理统一使用 DatabaseError 类
+
+---
+
 ## 2026-02-19 - Task: 项目数据访问层 - Completed
 
 ### What was done:

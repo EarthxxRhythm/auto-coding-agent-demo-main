@@ -161,7 +161,7 @@
         "实现 confirmAllVideos() 确认所有分镜视频",
         "实现 deleteScenesByProjectId() 删除项目的所有分镜（重新生成时用）"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 13,
@@ -175,7 +175,7 @@
         "实现 Supabase Storage 上传功能",
         "实现 Supabase Storage 删除功能（重新生成时清理旧文件）"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 14,
@@ -191,7 +191,7 @@
         "DELETE /api/projects/:id 删除项目",
         "验证用户是项目所有者"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 15,
@@ -209,7 +209,7 @@
         "创建 app/api/generate/scenes/regenerate/route.ts",
         "POST 重新生成分镜（流程同上）"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 16,
@@ -227,7 +227,7 @@
         "遍历所有 description_confirmedtexttrue 且 image_statustextpending 的分镜",
         "更新项目 stage 为 'images'"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 17,
@@ -248,7 +248,7 @@
         "POST /api/generate/videos 批量创建所有分镜视频任务",
         "更新项目 stage 为 'videos'"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 18,
@@ -268,7 +268,7 @@
         "创建 app/api/scenes/confirm-all-videos/route.ts",
         "POST 确认所有分镜视频，更新项目 stage 为 'completed'"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 19,
