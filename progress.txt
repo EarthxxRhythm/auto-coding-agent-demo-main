@@ -1,5 +1,33 @@
 # Progress Log
 
+## 2026-02-19 - Task: 项目数据访问层 - Completed
+
+### What was done:
+- 创建 lib/db/projects.ts 项目数据访问层
+  - 定义类型：Project, ProjectWithScenes, CreateProjectInput, UpdateProjectInput
+  - 定义关联类型：Scene, SceneWithMedia, Image, Video
+  - createProject(): 创建新项目（自动关联用户 ID，默认 stage 为 'draft'）
+  - getProjects(): 获取用户项目列表（支持分页和按阶段筛选）
+  - getProjectById(): 获取单个项目及其所有分镜和媒体（使用嵌套查询）
+  - updateProject(): 更新项目（标题、故事、风格）
+  - updateProjectStage(): 更新项目阶段
+  - deleteProject(): 删除项目（级联删除关联的分镜和媒体）
+  - checkProjectOwnership(): 检查用户是否拥有项目（用于权限验证）
+- 实现 DatabaseError 类和 handleDatabaseError 函数用于统一错误处理
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 构建成功
+- ✅ 所有功能代码实现完成
+
+### Notes:
+- 所有操作都验证用户身份（通过 supabase.auth.getUser()）
+- 使用 RLS 策略保护数据访问
+- getProjectById 使用嵌套查询一次性获取项目、分镜、图片、视频
+- updated_at 字段由数据库触发器自动更新
+
+---
+
 ## 2026-02-19 - Task: 火山引擎视频生成 API 封装 - Completed
 
 ### What was done:

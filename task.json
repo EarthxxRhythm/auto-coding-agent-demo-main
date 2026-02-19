@@ -142,7 +142,7 @@
         "实现 updateProjectStage() 更新项目阶段",
         "实现 deleteProject() 删除项目"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 12,
