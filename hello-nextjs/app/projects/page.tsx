@@ -128,6 +128,7 @@ export default function ProjectsPage() {
                   >
                     {project.preview_image_url ? (
                       <div classNametext"aspect-video w-full bg-gray-100">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           srctext{project.preview_image_url}
                           alttext{project.title}

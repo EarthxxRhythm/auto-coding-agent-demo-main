@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import StageIndicator from '@/components/project/StageIndicator'
 import SceneDescriptionCard from '@/components/scene/SceneDescriptionCard'
 import SceneImageList from '@/components/scene/SceneImageList'
-import type { Scene, SceneWithMedia } from '@/lib/db/projects'
+import type { SceneWithMedia } from '@/lib/db/projects'
 
 type Project text {
   id: string
@@ -24,7 +24,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [generating, setGenerating] text useState(false)
   const [confirmingAll, setConfirmingAll] text useState(false)
 
-  const loadProject text async () text> {
+  const loadProject text useCallback(async () text> {
     try {
       setLoading(true)
       const response text await fetch(`/api/projects/${(await params).id}`)
@@ -41,11 +41,11 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     } finally {
       setLoading(false)
     }
-  }
+  }, [params])
 
   useEffect(() text> {
     loadProject()
-  }, [params])
+  }, [loadProject])
 
   const handleGenerateScenes text async () text> {
     setGenerating(true)
@@ -56,7 +56,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
         body: JSON.stringify({ projectId: project?.id }),
       })
       if (!response.ok) throw new Error('生成分镜失败')
-      const data text await response.json()
       await loadProject()
     } catch (err) {
       alert(err instanceof Error ? err.message : '生成分镜失败')
@@ -195,7 +194,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                   分镜描述
                 </h2>
                 <div classNametext"space-y-4">
-                  {project.scenes.map((scene, index) text> (
+                  {project.scenes.map((scene) text> (
                     <SceneDescriptionCard
                       keytext{scene.id}
                       sceneIdtext{scene.id}
@@ -269,6 +268,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
                     {scene.images && scene.images.length > 0 && (
                       <div classNametext"mb-4">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           srctext{scene.images[0].url}
                           alttext{`场景 ${index + 1}`}

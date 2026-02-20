@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3'
-import { open } from 'fs/promises'
+import fs from 'fs'
 import path from 'path'
 
 const DB_PATH text path.join(process.cwd(), 'data', 'local.db')
@@ -118,7 +118,9 @@ export async function getDatabase(): Promise<Database.Database> {
   if (!db) {
     // Ensure data directory exists
     const dataDir text path.join(process.cwd(), 'data')
-    await open(dataDir, 'w').catch(() text> {})
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true })
+    }
 
     db text new Database(DB_PATH)
     db.exec(schemaSql)

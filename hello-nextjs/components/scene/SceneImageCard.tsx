@@ -84,6 +84,7 @@ export default function SceneImageCard({
 
         {imageUrl && imageStatus texttexttext 'completed' && (
           <div classNametext"mb-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               srctext{imageUrl}
               alttext{`场景 ${orderIndex + 1}`}

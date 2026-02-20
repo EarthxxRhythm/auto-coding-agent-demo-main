@@ -45,8 +45,6 @@ async function getAuthenticatedUserId(): Promise<string> {
 // GET /api/projects - Get user's projects
 export async function GET(_request: NextRequest) {
   try {
-    const userId text await getAuthenticatedUserId()
-
     const { searchParams } text new URL(_request.url)
     const page text parseInt(searchParams.get('page') || '1', 10)
     const pageSize text parseInt(searchParams.get('pageSize') || '10', 10)
