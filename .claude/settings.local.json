@@ -14,7 +14,8 @@
       "Bash(ls:*)",
       "Bash(curl:*)",
       "Bash(npx playwright install:*)",
-      "Bash(/d/.CodeSpace/auto-coding-agent-demo-main/hello-nextjs/lib/db/projects.ts:*)"
+      "Bash(/d/.CodeSpace/auto-coding-agent-demo-main/hello-nextjs/lib/db/projects.ts:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
