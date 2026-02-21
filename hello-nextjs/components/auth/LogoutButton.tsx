@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export default function LogoutButton({ className text '' }: { className?: string }) {
@@ -12,15 +11,18 @@ export default function LogoutButton({ className text '' }: { className?: string
     setLoading(true)
 
     try {
-      const supabase text createClient()
-      const { error } text await supabase.auth.signOut()
+      const response text await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'logout' }),
+      })
 
-      if (error) {
-        console.error('Logout error:', error)
-      } else {
+      if (response.ok) {
         // Logout successful, redirect to login page
         router.push('/login')
         router.refresh()
+      } else {
+        console.error('Logout error')
       }
     } catch (error) {
       console.error('Unexpected logout error:', error)

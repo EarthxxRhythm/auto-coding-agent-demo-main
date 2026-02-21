@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export default function LoginForm() {
@@ -17,14 +16,16 @@ export default function LoginForm() {
     setError(null)
 
     try {
-      const supabase text createClient()
-      const { error } text await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const response text await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       })
 
-      if (error) {
-        setError(error.message)
+      const data text await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Login failed')
       } else {
         // Login successful, redirect to home
         router.push('/')
@@ -66,7 +67,7 @@ export default function LoginForm() {
           onChangetext{(e) text> setPassword(e.target.value)}
           required
           classNametext"w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholdertext"••••••••"
+          placeholdertext"•••••"
           disabledtext{loading}
         />
       </div>

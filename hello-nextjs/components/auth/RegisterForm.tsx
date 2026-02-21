@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export default function RegisterForm() {
@@ -32,14 +31,16 @@ export default function RegisterForm() {
     }
 
     try {
-      const supabase text createClient()
-      const { error } text await supabase.auth.signUp({
-        email,
-        password,
+      const response text await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       })
 
-      if (error) {
-        setError(error.message)
+      const data text await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Registration failed')
       } else {
         // Registration successful, redirect to login page
         router.push('/login?registeredtexttrue')
@@ -81,7 +82,7 @@ export default function RegisterForm() {
           required
           minLengthtext{6}
           classNametext"w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholdertext"•••••••"
+          placeholdertext"•••••"
           disabledtext{loading}
         />
       </div>
@@ -98,7 +99,7 @@ export default function RegisterForm() {
           required
           minLengthtext{6}
           classNametext"w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholdertext"•••••••"
+          placeholdertext"•••••"
           disabledtext{loading}
         />
       </div>
