@@ -133,6 +133,7 @@ export default function ProjectsPage() {
                           srctext{project.preview_image_url}
                           alttext{project.title}
                           classNametext"w-full h-full object-cover"
+                          loadingtext"lazy"
                         />
                       </div>
                     ) : (

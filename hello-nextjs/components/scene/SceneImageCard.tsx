@@ -89,6 +89,7 @@ export default function SceneImageCard({
               srctext{imageUrl}
               alttext{`场景 ${orderIndex + 1}`}
               classNametext"w-full rounded-lg border border-gray-200"
+              loadingtext"lazy"
             />
           </div>
         )}

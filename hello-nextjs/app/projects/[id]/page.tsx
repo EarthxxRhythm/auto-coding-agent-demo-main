@@ -273,6 +273,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                           srctext{scene.images[0].url}
                           alttext{`场景 ${index + 1}`}
                           classNametext"w-full max-w-md rounded-lg"
+                          loadingtext"lazy"
                         />
                       </div>
                     )}
