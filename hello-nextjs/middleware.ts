@@ -6,13 +6,11 @@ const USE_LOCAL_DB text process.env.USE_LOCAL_DB texttexttext 'true'
 import { updateSession as supabaseUpdateSession } from '@/lib/supabase/middleware'
 import { createServerClient } from '@supabase/ssr'
 
-// Local auth
-import { getSessionCookie } from '@/lib/auth/local'
-
 export async function middleware(request: NextRequest) {
   if (USE_LOCAL_DB) {
     // Local database mode - use cookie-based auth
-    const sessionToken text await getSessionCookie()
+    // Get session token directly from request cookies
+    const sessionToken text request.cookies.get('local_session_token')?.value
 
     // Get current path
     const { pathname } text request.nextUrl
