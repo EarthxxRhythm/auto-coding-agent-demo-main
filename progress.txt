@@ -1,5 +1,35 @@
 # Progress Log
 
+## 2026-02-26 - 部署准备工作
+
+### What was done:
+- 修复 Google Fonts 网络连接问题，改用系统字体
+  - 移除 `next/font/google` 依赖
+  - 更新 `app/layout.tsx` 使用系统字体变量
+  - 更新 `app/globals.css` 配置系统字体
+  - 更新 metadata 为中文标题和描述
+- 验证生产构建：`npm run build` 通过
+- 验证生产服务器：`npm run start` 成功运行在 http://localhost:3000
+- 创建部署相关文件：
+  - `DEPLOYMENT.md` - 完整的部署说明文档
+  - `Dockerfile` - Docker 镜像构建配置
+  - `docker-compose.yml` - Docker Compose 部署配置
+  - `.dockerignore` - Docker 构建排除文件
+
+### Testing:
+- ✅ npm run build: 通过 (构建成功)
+- ✅ npm run start: 成功启动生产服务器
+- ✅ 生产环境首页正常渲染
+- ✅ Docker 配置文件创建完成
+
+### Notes:
+- 项目已准备好部署到生产环境
+- 推荐部署方式：Vercel（自动部署）或 Docker
+- 支持多种部署场景：本地、云服务器、容器化
+- 已配置系统字体，无需担心网络连接问题
+
+---
+
 ## 2026-02-21 - Task 31: 最终测试和优化 - Re-executed
 
 ### What was done:
