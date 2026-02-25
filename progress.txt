@@ -1,8 +1,11 @@
 # Progress Log
 
-## 2026-02-26 - 部署准备工作
+## 2026-02-26 - Vercel 部署准备
 
 ### What was done:
+- 创建 Vercel 部署配置文件：
+  - `vercel.json` - Vercel 部署配置
+  - `supabase/migrations/001_init_schema.sql` - Supabase 数据库 Schema
 - 修复 Google Fonts 网络连接问题，改用系统字体
   - 移除 `next/font/google` 依赖
   - 更新 `app/layout.tsx` 使用系统字体变量

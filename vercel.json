@@ -1,0 +1,19 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["sin1", "hkg1"],
+  "env": {
+    "USE_LOCAL_DB": "@use-local-db"
+  },
+  "build": {
+    "env": {
+      "ZHIPU_API_KEY": "@zhipu-api-key",
+      "VOLC_ACCESS_KEY": "@volc-access-key",
+      "VOLC_SECRET_KEY": "@volc-secret-key",
+      "USE_LOCAL_DB": "@use-local-db"
+    }
+  }
+}
