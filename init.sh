@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+# =============================================================================
 # init.sh - Project Initialization Script
-# texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+# =============================================================================
 # Run this script at the start of every session to ensure the environment
 # is properly set up and the development server is running.
-# texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+# =============================================================================
 
 set -e
 
 # Colors
-GREENtext'\033[0;32m'
-YELLOWtext'\033[1;33m'
-NCtext'\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
 
 echo -e "${YELLOW}Initializing Spring FES Video project...${NC}"
 
@@ -24,7 +24,7 @@ cd hello-nextjs && npm install && cd ..
 echo "Starting development server..."
 cd hello-nextjs
 npm run dev &
-SERVER_PIDtext$!
+SERVER_PID=$!
 cd ..
 
 # Wait for server to be ready

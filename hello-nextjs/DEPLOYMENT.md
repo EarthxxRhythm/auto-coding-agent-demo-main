@@ -27,20 +27,20 @@ npm install
 
 ```bash
 # 智谱 AI API
-ZHIPU_API_KEYtextyour_zhipu_api_key_here
+ZHIPU_API_KEY=your_zhipu_api_key_here
 
 # 火山引擎 API
-VOLC_ACCESS_KEYtextyour_volc_access_key_here
-VOLC_SECRET_KEYtextyour_volc_secret_key_here
+VOLC_ACCESS_KEY=your_volc_access_key_here
+VOLC_SECRET_KEY=your_volc_secret_key_here
 
 # Supabase (可选，用于云端数据库)
 # 如果不配置，将使用本地 SQLite 数据库
-NEXT_PUBLIC_SUPABASE_URLtextyour_supabase_url_here
-NEXT_PUBLIC_SUPABASE_ANON_KEYtextyour_supabase_anon_key_here
-SUPABASE_SERVICE_ROLE_KEYtextyour_supabase_service_role_key_here
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key_here
 
 # 本地数据库（默认使用）
-USE_LOCAL_DBtexttrue
+USE_LOCAL_DB=true
 ```
 
 ### 3. 启动开发服务器
@@ -88,7 +88,7 @@ RUN npm ci
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-COPY --fromtextdeps /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
@@ -100,9 +100,9 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --fromtextbuilder /app/public ./public
-COPY --fromtextbuilder --chowntextnextjs:nodejs /app/.next/standalone ./
-COPY --fromtextbuilder --chowntextnextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
@@ -147,7 +147,7 @@ pm2 startup
 2. 在 SQL Editor 中执行数据库 schema:
    - 查看 `supabase/migrations/` 目录下的迁移文件
 3. 配置 `.env.local` 中的 Supabase 凭证
-4. 设置环境变量 `USE_LOCAL_DBtextfalse`
+4. 设置环境变量 `USE_LOCAL_DB=false`
 
 ## API 服务
 

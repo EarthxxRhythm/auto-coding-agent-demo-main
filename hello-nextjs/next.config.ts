@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig text {
+const nextConfig: NextConfig = {
   /* config options here */
 };
 

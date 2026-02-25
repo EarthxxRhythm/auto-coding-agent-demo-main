@@ -3,24 +3,24 @@ version: '3.8'
 services:
   app:
     build:
-      context: .
+      con=: .
       dockerfile: Dockerfile
     container_name: spring-fes-video
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENVtextproduction
-      - USE_LOCAL_DBtexttrue
+      - NODE_ENV=production
+      - USE_LOCAL_DB=true
       # 智谱 AI API
-      - ZHIPU_API_KEYtext${ZHIPU_API_KEY}
+      - ZHIPU_API_KEY=${ZHIPU_API_KEY}
       # 火山引擎 API
-      - VOLC_ACCESS_KEYtext${VOLC_ACCESS_KEY}
-      - VOLC_SECRET_KEYtext${VOLC_SECRET_KEY}
+      - VOLC_ACCESS_KEY=${VOLC_ACCESS_KEY}
+      - VOLC_SECRET_KEY=${VOLC_SECRET_KEY}
       # Supabase (可选)
-      - NEXT_PUBLIC_SUPABASE_URLtext${NEXT_PUBLIC_SUPABASE_URL:-}
-      - NEXT_PUBLIC_SUPABASE_ANON_KEYtext${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}
-      - SUPABASE_SERVICE_ROLE_KEYtext${SUPABASE_SERVICE_ROLE_KEY:-}
-      - USE_LOCAL_DBtext${USE_LOCAL_DB:-true}
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - USE_LOCAL_DB=${USE_LOCAL_DB:-true}
     volumes:
       - ./data:/app/data
     restart: unless-stopped
