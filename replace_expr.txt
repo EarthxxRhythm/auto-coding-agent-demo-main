@@ -1,5 +1,0 @@
-regex:===>text
-sb_secret_[a-zA-Z0-9_]+==>sb_secret_REMOVED
-sb_publishable_[a-zA-Z0-9_]+==>sb_publishable_REMOVED
-sb_publishile_[a-zA-Z0-9_]+==>sb_publishable_REMOVED
-https://[^ ]+.supabase.co==>https://REMOVED.supabase.co
